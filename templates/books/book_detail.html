@@ -1,0 +1,54 @@
+{% extends 'books/base.html' %}
+{% block title %} {{ book.name }} {% endblock title %}
+{% block container %}
+    <div class="container-fluid py-md-3">
+{% endblock container %}
+
+{% block sidebar %}
+    <div class="side-bar col-lg-3">
+{% endblock sidebar %}
+
+{% block book %}
+<div class="left-ads-display col-lg-8">
+    <div class="row">
+        <div class="desc1-left col-md-6">
+            <img src="{{ book.cover.url }}" class="img-fluid" alt="">
+        </div>
+        <div class="desc1-right col-md-6 pl-lg-4">
+            <h3 class="editContent" style="outline: none; cursor: inherit;">
+                {{ book.name }}</h3>
+            <h5 class="editContent"></h5>
+            <div>
+                <li style="list-style: none">
+                    <span><b>Автор:</b>
+                        {% for author in book.authors.all %}
+                            <a href="{{ author.get_absolute_url }}">
+                                {{ author.name }}
+                            </a>
+                        {% endfor %}
+                    </span></li>
+                <li style="list-style: none"><span><b>Жанр:</b>
+                    {% for genre in book.genres.all %}
+                            {{ genre.name }}
+                        {% endfor %}
+                    </span>
+                </li>
+                <li style="list-style: none"><span><b>Год написания:</b>
+                    {{ book.year }}
+                    </span>
+                </li>
+
+            </div>
+        </div>
+    </div>
+    <div class="row sub-para-w3layouts mt-5">
+
+        <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
+            О книге {{ book.name }}</h3>
+        <p class="editContent" style="outline: none; cursor: inherit;">
+            {{ book.description }}
+        </p>
+    </div>
+    <hr>
+</div>
+{% endblock book %}

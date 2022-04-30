@@ -1,0 +1,41 @@
+{% extends 'books/base.html' %}
+{% block title %} Каталог книг {% endblock title %}
+{% block header %} bg1 {% endblock header %}
+{% block book %}
+    <div class="left-ads-display col-lg-9">
+        <div class="row">
+            {% for book in book_list %}
+                <div class="col-md-4 product-men">
+                    <div class="product-shoe-info editContent text-center mt-lg-4" >
+                        <div class="men-thumb-item">
+                            <img src="{{ book.cover.url }}" class="img-fluid" alt="" >
+                        </div>
+                        <div class="item-info-product">
+                            <h4 class="">
+                                <a href="{{ book.get_absolute_url}" class="editContent" >
+                                    {% for author in book.authors.all %}
+                                        {{ author.name }}
+                                    {% endfor %}
+                                </a>
+                            </h4>
+
+                            <div class="product_price">
+                                <div class="grid-price">
+                                    <span class="money editContent" >
+                                        {{ book.name }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <nav aria-label="...">
+            {% include 'include/pagination.html' %}
+        </nav>
+    </div>
+{% endblock book %}
+
+
+
